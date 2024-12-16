@@ -1,0 +1,33 @@
+Authentication Service Logs
+---------------------------
+tail -f /var/log/auth.log | sample --rate 0.2
+
+Canonical Logging
+-----------------
+tail -f /var/log/auth.log | grep CANONICAL
+
+
+permission mode
+--------------
+sudo nano /etc/rsyslog.conf
+sudo ufw allow 514/tcp
+sudo systemctl restart rsyslog.service
+
+info details
+-------------
+rsyslogd -v
+
+
+look detail
+----------------
+sudo tail /var/log/syslog
+
+
+config /etc/rsyslog.conf
+------------------------
+*.* @10.10.10.133:514
+
+Listening test
+-------------
+netstat -anup
+

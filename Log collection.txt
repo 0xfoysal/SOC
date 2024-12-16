@@ -1,0 +1,65 @@
+*Records of Past events
+	-> pref. optimization	
+	-> troubleshoot
+	-> security analysis
+	-> trend analysis (AI/ML)
+security question
+what?
+when?
+where? ip, mac
+who? (user, userAgent)
+
+Log types
+
+Log identification -> web server -> db server -> server machine
+Log collection -> Rsyslog
+parameter -> Time
+
+
+
+
+Network Time Protocol - NTP
+ntpdate, rsyslog
+
+it configure location is : /var/log/websrv-02/rsyslog_sshd.log
+
+Open a Terminal.
+1. check command : 
+	# central server restart
+	- sudo systemctl status rsyslog
+
+2. Create a Configuration File:
+	Use a text editor to create the following configuration file: 
+			- gedit /etc/rsyslog.d/98-websrv-02-sshd.conf,
+			- nano /etc/rsyslog.d/98-websrv-02-sshd.conf,
+			- vi /etc/rsyslog.d/98-websrv-02-sshd.conf,
+			- vim /etc/rsyslog.d/98-websrv-02-sshd.conf 
+3. Add the Configuration:
+	Add the following lines in -
+		/etc/rsyslog.d/98-websrv-02-sshd.conf to direct the sshd messages to the specific log file:
+		$FileCreateMode 0644
+
+$FileCreateMode 0644
+:programname, isequal, "sshd" /var/log/websrv-02/rsyslog_sshd.log
+
+
+4. sudo systemctl restart rsyslog
+
+
+5.
+cd /var/log/websrv-02/
+ls
+#nano /etc/rsyslog.d/98-websrv-02-sshd.conf
+sudo systemctl restart rsyslog
+cat rsyslog_sshd.log | head -n 30
+
+
+
+
+
+
+
+
+
+
+
