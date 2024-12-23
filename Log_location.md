@@ -62,3 +62,10 @@ This section provides information on where to find log files for the project. Lo
 ## Log Rotation
 
 - Log files should be rotated regularly to prevent them from becoming too large. Many servers use `logrotate` to manage log files. Ensure your system's log rotation settings are configured.
+
+## Linux workstation
+    - `/var/log/httpd : Contains HTTP Request  / Response and error logs.`
+    - `/var/log/cron   : Events related to cron jobs are stored in this location.`
+    - `/var/log/auth.log and /var/log/secure : Stores authentication related logs.`
+    - `/var/log/kern : This file stores kernel related events.`
+
