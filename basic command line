@@ -1,0 +1,77 @@
+Tools : XPLG or SolarWinds Loggly
+Sigma -> is highly flexible open-source tool thatdescribes log events
+Yara -> pattern matching tool
+
+
+ tail -f -n 5 apache-1691435735822.log 
+ tail apache-1691435735822.log 
+ head apache-1691435735822.log 
+ head -f -n 5 apache-1691435735822.log 
+ head -n 5 apache-1691435735822.log 
+ wc -l apache-1691435735822.log 
+ wc apache-1691435735822.log 
+
+
+ cut -d ' ' -f 1 apache.log
+ cut -d ' ' -f 1 apache.log | sort -n -r // n-> adjecent order r-> decending order
+ 
+ uniq - remove duplicate line
+ -c   - line number
+ cut -d ' ' -f 1 apache.log | sort -n -r | uniq -c
+ cut -d ' ' -f 7 apache.log
+
+ sed and awk -> text processing tools
+
+
+ sed 's/31\/Jul\/2023/July 31, 2023/g' apache.log
+	- Replace 31/Jul/2023" with "July 31, 2023
+
+
+ awk '$9 >= 400' apache.log
+ In the apache.log file, how many total HTTP 200 responses were logged?
+ ans: awk '$9 == 200' apache.log | wc -l
+
+
+
+
+ grep -> powerful text seasrch tool 
+ 	grep "admin" apache.log
+
+ uniq -c command, we can append the -c option to grep to count the entries matching the search criteria. For example, because only a single line was returned in the above command, appending -c will return "1".
+ 
+ grep -c "admin" apache.log
+ grep -n "admin" apache.log      
+ grep -v "/index.php" apache.log | grep "203.64.78.90"
+
+ grep primary logic
+----------------------
+
+ grep -E 'pattern1.*pattern2' filename
+ grep -E '110.122.65.76.*/login.php' apache-1691435735822.log
+
+ Regular Expression
+ ------------------
+ grep -E 'post=1[0-9]' apache-ex2.log
+
+ extract ip address : \b([0-9]{1,3}\.){3}[0-9]{1,3}\b
+
+
+logtash.conf
+------------
+
+input {
+  ...
+}
+
+filter {
+  grok {
+    match => { "message" => "(?<ipv4_address>\b([0-9]{1,3}\.){3}[0-9]{1,3}\b)" }
+  }
+}
+
+output {
+  ...
+}
+
+ 
+ 
